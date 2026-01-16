@@ -9,6 +9,9 @@ function getFileExtension($file)
 {
     return substr(strrchr($file, '.'), 1);
 }
+//créer le dossier si il n'existe pas :
+if (!is_dir(__DIR__ . "/public")) mkdir(__DIR__ . "/public");
+
 
 if (isset($_POST["submit"])) {
     //test si le fichier est bien importé

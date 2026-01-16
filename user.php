@@ -12,7 +12,7 @@ function add_user(array $user): void
         //1 Connexion à la BDD
         $bdd = connect_bdd();
         //2 Ecriture de la requête
-        $sql = "INSERT INTO users (firstname, lastname, email, `password`, roles) VALUES (?,?,?,?,?)";
+        $sql = "INSERT INTO users (firstname, lastname, email, `password`, roles, img) VALUES (?,?,?,?,?,?)";
         //3 Préparation de la requête
         $req = $bdd->prepare($sql);
         //4 Bind des valeurs
@@ -26,6 +26,7 @@ function add_user(array $user): void
         } else {
             $req->bindValue(5, 'ROLE_USER', PDO::PARAM_STR);
         }
+        $req->bindValue(6, $user['img'], PDO::PARAM_STR);
         //5 Exécution de la requête
         $req->execute();
     } catch (PDOException $e) {

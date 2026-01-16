@@ -23,6 +23,22 @@ if (isset($_POST['register'])) {
         else {
             //Hash du mot de passe
             $_POST['password'] = password_hash($_POST['password'], PASSWORD_DEFAULT);
+            //Récupération de l'image de profil si elle existe
+            if (isset($_FILES["img"]) && !empty($_FILES["img"]["tmp_name"])) {
+                $old_name = $_FILES["img"]["name"];
+                $from = $_FILES["img"]["tmp_name"];
+                $ext = getFileExtension($old_name);
+                $new_name = uniqid($_POST["firstname"],true) . "." .$ext;
+                $to = __DIR__ . "/public/" . $new_name;
+                //Déplacement de l'image (vers public)
+                move_uploaded_file($from, $to);
+                //Renommer l'image dans la super gobale $_POST["img]
+                $_POST["img"] = $new_name;
+            }     
+            //sinon image par défault
+            else {
+                $_POST["img"] = "default.png";
+            }
             //Ajout de l'utilisateur
             add_user($_POST);
             $message = "Utilisateur ajouté avec succès";
@@ -53,7 +69,7 @@ if (isset($_POST['register'])) {
     <main class="container-fluid">
         <h1>S'inscrire</h1>
         <p><?= $message ?? "" ?></p>
-        <form action="" method="post">
+        <form action="" method="post" enctype="multipart/form-data">
             <fieldset>
                 <label for="firstname">Prénom
                     <input type="text" id="firstname" name="firstname" placeholder="saisir le prénom">
@@ -67,6 +83,8 @@ if (isset($_POST['register'])) {
                 <label for="password">Mot de passe
                     <input type="password" id="password" name="password" placeholder="saisir le mot de passe" aria-required="true">
                 </label>
+                <label for="">Ajouter une image de profil :</label>
+                <input type="file" name="img">
                 <label for="roles">
                     <input type="checkbox" id="roles" name="roles" aria-label="Rôle administrateur">
                     Cocher pour rôle admin

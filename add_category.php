@@ -1,7 +1,14 @@
 <?php
+//Démarrer la session 
 session_start();
 
-include 'vendor/autoload.php';
+//Test si l'utilisateur est déconnecté
+if (!isset($_SESSION["user"])) {
+    //Redirection
+    header('Location: index.php');
+    exit();
+}
+//import des ressources
 include 'category.php';
 include 'tools.php';
 
@@ -19,7 +26,7 @@ if (isset($_POST['save'])) {
         else {
             //Ajout de la catégorie
             add_category($_POST);
-            $message = "Catégorie ajoutée avec succès";
+            $message = "La catégorie : " . $_POST["name"] . " ajoutée avec succès";
         }
     }
     //Sinon les champs ne sont pas tous remplis

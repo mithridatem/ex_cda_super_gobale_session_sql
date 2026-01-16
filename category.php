@@ -43,10 +43,8 @@ function is_category_exists(string $name): bool
         $req->bindValue(1, $name, PDO::PARAM_STR);
         //5 Exécution de la requête
         $req->execute();
-        //6 Récupération de la catégorie
-        $category = $req->fetch(PDO::FETCH_ASSOC);
         //7 Retourne true si la catégorie existe, false sinon
-        return (bool) $category;
+        return (bool) $req->fetch(PDO::FETCH_ASSOC);
     } catch (PDOException $e) {
         return false;
     }

@@ -10,6 +10,7 @@
     </ul>
   <?php else: ?>
     <ul>
+      <li><a href="profil.php">Profil</a></li>
       <li><a href="add_category.php">Ajouter une catégorie</a></li>
       <li><a href="logout.php">Se déconnecter</a></li>
     </ul>

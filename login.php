@@ -1,6 +1,5 @@
 <?php
 
-include 'vendor/autoload.php';
 include 'user.php';
 include 'tools.php';
 
@@ -59,7 +58,7 @@ if (isset($_POST['login'])) {
     </header>
     <main class="container-fluid">
         <h1>Se connecter</h1>
-        <form method="POST" action="login.php">
+        <form method="post" action="">
             <fieldset>
                 <label for="email">Email :
                     <input type="email" id="email" name="email" required>

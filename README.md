@@ -44,3 +44,4 @@ php -S 127.0.0.1:8000
 **Le site sera accessible avec l'url** :
 
 http://127.0.0.1:8000 dans le navigateur web.
+

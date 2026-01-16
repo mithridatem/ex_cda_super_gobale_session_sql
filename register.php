@@ -25,10 +25,15 @@ if (isset($_POST['register'])) {
             $_POST['password'] = password_hash($_POST['password'], PASSWORD_DEFAULT);
             //Récupération de l'image de profil si elle existe
             if (isset($_FILES["img"]) && !empty($_FILES["img"]["tmp_name"])) {
+                //Variables du fichier img
                 $old_name = $_FILES["img"]["name"];
+                //Répertoire source (emplacement temporaire)
                 $from = $_FILES["img"]["tmp_name"];
-                $ext = getFileExtension($old_name);
-                $new_name = uniqid($_POST["firstname"],true) . "." .$ext;
+                //Récupération d'extension
+                $ext = strtolower(getFileExtension($old_name));
+                //Nouveau nom firstname + uniqid + . + extension
+                $new_name = uniqid(strtolower($_POST["firstname"]),true) . "." .$ext;
+                //Répertoire de destination
                 $to = __DIR__ . "/public/" . $new_name;
                 //Déplacement de l'image (vers public)
                 move_uploaded_file($from, $to);

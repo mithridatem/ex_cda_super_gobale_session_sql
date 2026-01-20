@@ -75,3 +75,20 @@ function add_categorie_article(array $article): void
         $e->getMessage();
     }
 }
+
+function get_all_articles(): array
+{
+    try {
+        $bdd = connect_bdd();
+        $sql = "SELECT a.title, a.content, a.created_at, GROUP_CONCAT(c.name_category) AS name_category FROM article AS a
+                LEFT JOIN article_category AS ac ON  a.id = ac.id_article
+                LEFT JOIN category AS c ON ac.id_category = c.id
+                GROUP BY a.id";
+        $req = $bdd->prepare($sql);
+        $req->execute();
+        $articles = $req->fetchAll(PDO::FETCH_ASSOC);
+    } catch (PDOException $e) {
+        echo $e->getMessage();
+    }
+    return $articles;
+}

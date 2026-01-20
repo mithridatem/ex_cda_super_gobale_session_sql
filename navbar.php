@@ -5,6 +5,7 @@
   <?php if (!isset($_SESSION['user'])) : ?>
     <ul>
       <li><a href="index.php">Accueil</a></li>
+      <li><a href="show_all_article.php">Afficher les articles</a></li>
       <li><a href="register.php">S'inscrire</a></li>
       <li><a href="login.php">Se connecter</a></li>
     </ul>
@@ -12,6 +13,7 @@
     <ul>
       <li><a href="profil.php">Profil</a></li>
       <li><a href="add_category.php">Ajouter une catégorie</a></li>
+      <li><a href="show_all_article.php">Afficher les articles</a></li>
       <li><a href="add_article.php">Ajouter un article</a></li>
       <li><a href="logout.php">Se déconnecter</a></li>
     </ul>

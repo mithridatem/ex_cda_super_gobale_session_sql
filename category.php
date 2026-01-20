@@ -1,6 +1,6 @@
 <?php
 
-include 'bdd.php';
+//include 'bdd.php';
 
 /**
  * Ajoute une catégorie en base de données
@@ -48,4 +48,23 @@ function is_category_exists(string $name): bool
     } catch (PDOException $e) {
         return false;
     }
+}
+
+function get_all_categories(): ?array 
+{
+    try {
+        //1 connecter à la BDD
+        $bdd = connect_bdd();
+        //2 écrire la requête SQl
+        $sql = "SELECT c.id, c.name_category FROM category AS c ORDER BY c.name_category ASC";
+        //3 préparer la requête
+        $req = $bdd->prepare($sql);
+        //4 exécuter la requête
+        $req->execute();
+        //5 retourner la reponse
+        $category = $req->fetchAll(PDO::FETCH_ASSOC);
+    } catch (\PDOException $e) {
+        echo $e->getMessage();
+    }
+    return $category;
 }

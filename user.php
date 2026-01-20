@@ -71,7 +71,7 @@ function get_user_by_email(string $email): ?array
         //1 Connexion à la BDD
         $bdd = connect_bdd();
         //2 Ecriture de la requête
-        $sql = "SELECT u.id, u.firstname, u.lastname, u.email, u.password, u.roles 
+        $sql = "SELECT u.id, u.firstname, u.lastname, u.email, u.password, u.roles, u.img 
         FROM users AS u WHERE email = ?";
         //3 Préparation de la requête
         $req = $bdd->prepare($sql);

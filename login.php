@@ -24,7 +24,8 @@ if (isset($_POST['login'])) {
                     'firstname' => $user['firstname'],
                     'lastname' => $user['lastname'],
                     'email' => $user['email'],
-                    'roles' => $user['roles']
+                    'roles' => $user['roles'],
+                    'img' => $user['img']
                 ];
                 //Redirection vers la page d'accueil
                 header('Location: index.php');

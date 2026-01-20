@@ -17,6 +17,7 @@ if (!isset($_SESSION["user"])) {
     <link
         rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+        <link rel="stylesheet" href="public/main.css">
     <title>Profil</title>
 </head>
 <body>
@@ -27,6 +28,7 @@ if (!isset($_SESSION["user"])) {
         <h2>Prénom : <?= $_SESSION["user"]["firstname"] ?? "" ?></h2>
         <h2>Nom : <?= $_SESSION["user"]["lastname"] ?? "" ?></h2>
         <h2>Email : <?= $_SESSION["user"]["email"] ?? "" ?></h2>
+        <img class="img-profil" src="<?= "public/" . $_SESSION["user"]["img"] ?? "" ?>" alt="image de profil">
     </main>
 </body>
 </html>
